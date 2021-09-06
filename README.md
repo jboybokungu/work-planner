@@ -1,6 +1,6 @@
 # work-planner-
 
-[Link to LIVE site]()
+[Link to LIVE site](https://jboybokungu.github.io/work-planner/)
 
 
 
