@@ -15,30 +15,35 @@ function checkTime() {
     var currentTime = moment().hours();
 
     timeBlockEl.each(function () {
-        var blockTime = parseInt($(this).attr(id).split("time")[1]);
-
+        console.log($(this).children()[1])
+        var blockTime = parseInt($(this).attr("id"));
         if (blockTime < currentTime) {
-            $(this).removeClass("future");
-            $(this).removeClass("present");
-            $(this).addClass("past");
+            $(this).children()[1].setAttribute("class", "col md-9 description past");
 
         }
 
     else if (blockTime === currentTime) {
 
-        $(this).removeClass("past");
-        $(this).removeClass("future");
-        $(this).raddClass("present");
+        $(this).children()[1].setAttribute("class", "col md-9 description present");
+
 
     } else {
 
-        $(this).removeClass("present");
-        $(this).removeClass("past");
-        $(this).addClass("future");
+        $(this).children()[1].setAttribute("class", "col md-9 description future");
+
 
     }
 
 })
+
+$(".save-button").on("click", saveButton);
+
+function saveButton(event) {
+    var text = $(event.target).siblings(".description").val();
+    var time = $(event.target).parent().attr("id");
+
+    localStorage.setItem(time, text);
+}
 
 function getData () {
     $('#8 .description').val(localStorage.getItem('8'));
@@ -54,5 +59,6 @@ function getData () {
     $('#18 .description').val(localStorage.getItem('18'));
 
 }
+getData();
 
 }
